@@ -1,0 +1,36 @@
+<div class="container" style="min-height:600px">
+
+<section class="jumbotron py-5 text-center container">
+<div class="row py-lg-5">
+  <div class="col-lg-6 col-md-8 mx-auto">
+    <h1 class="fw-light">Rejoignez nous</h1>
+    <p class="lead text-muted">Pour sortir, rencontrer les personnes qui habitent à coté de chez vous, c'est ici. <br /><small>Spécial, week end chez Féfé les 3 et 4 juillet, venez nombreux et amenez du bon son</small></p>
+    <p>
+      <a href="#" class="btn btn-primary my-2">Votre evenenement</a>
+      <a href="#" class="btn btn-secondary my-2">Vous inscrire</a>
+    </p>
+  </div>
+</div>
+</section>
+
+<div class="album py-5 bg-light">
+<div class="container">
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+
+<% @events.each do |e| %>
+<div class="col">
+  <div class="card">
+    <img src="https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?cs=srgb&dl=pexels-matheus-bertelli-2608517.jpg&fm=jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><%= e.title %></h5>
+      <p class="card-text"><%= e.description %></p>
+    </div>
+  </div>
+</div>
+<% end %>
+
+</div>
+</div>
+</div>
+</div>

@@ -4,7 +4,7 @@
 <div class="row py-lg-5">
   <div class="col-lg-6 col-md-8 mx-auto">
     <h1 class="fw-light">Rejoignez nous</h1>
-    <p class="lead text-muted">Pour sortir, rencontrer les personnes qui habitent à coté de chez vous, c'est ici. <br /><small>Spécial, week end chez Féfé les 3 et 4 juillet, venez nombreux et amenez du bon son</small></p>
+    <p class="lead text-muted">Pour sortir, rencontrer les personnes qui habitent à coté de chez vous, c'est ici. <br /><small>Spécial, week-end chez Félix les 3 et 4 juillet, venez nombreux et amenez du bon son</small></p>
     <p>
       <a href="#" class="btn btn-primary my-2">Votre evenenement</a>
       <a href="#" class="btn btn-secondary my-2">Vous inscrire</a>
@@ -25,6 +25,7 @@
     <div class="card-body">
       <h5 class="card-title"><%= e.title %></h5>
       <p class="card-text"><%= e.description %></p>
+      <a href=<%=event_path(e.id)%> class="stretched-link">Détail</a>
     </div>
   </div>
 </div>

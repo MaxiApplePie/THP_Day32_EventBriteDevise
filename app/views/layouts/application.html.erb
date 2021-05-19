@@ -26,13 +26,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a><%= link_to "Bienvenue", events_path, class: "nav-link" %></a>
-
+          <%= link_to "Bienvenue", events_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <a><%= link_to "Nouvel evenement", new_event_path, class: "nav-link" %></a>
-
-          </li>
+          <%= link_to "Nouvel evenement", new_event_path, class: "nav-link" %>
+        </li>
 
         <% if user_signed_in? %>
         
@@ -41,7 +39,7 @@
         Mon profil
         </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Mon profil</a></li>
+          <li><a class="dropdown-item" href="<%=user_path(current_user.id)%>">Mon Profil</a></li>
             <li><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
           </ul>
         </li>
@@ -68,7 +66,7 @@
     <%= yield %>
 
     <!-- Footer -->
-<footer class="bg-dark text-center text-lg-start text-muted">
+<footer class="bg-dark fixed-bottom text-center text-lg-start text-muted">
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2021 Copyright:

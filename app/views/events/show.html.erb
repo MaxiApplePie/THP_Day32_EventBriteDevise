@@ -1,41 +1,95 @@
-<div class="jumbotron-fluid text-center jumbo jumbo-event">
-  <h1 class="display-2 text-dark"><%=@event.title%></h1>
-  <h5 class="display-5 text-light"><%=@event.location%></h5>
-</div>
-<div class="container mt-5">
-  <div class="row cols-2">
-    <div class="col">
-      <h2>Description</h2>
-      <p><%=@event.description%></p>
-    </div>
-    <div class="col text-end">
-      <h4>Prix : <%=@event.price%> €</h4>
-    </div>
-  </div>
+<div class="jumbotron-fluid text-center jumbo jumbo-create-event">
+  <h1 class="display-4 mt-5"><%=@event.title%></h1>
 </div>
 
-<div class="container mt-5">
-  <div class="row cols-2">
-    <div class="col">
-      <h3>Nombre d'inscriptions</h3>
-      <p><%=@event.attendances.size%></p>
+<%if flash[:messages]%>
+  <div class="alert alert-danger" role="alert">
+    <%flash[:messages].each do |message|%>
+      <p><%=message%></p>
+    <%end%>
+  </div> 
+<%end%>
+<%if flash[:notice]%>
+  <div class="alert alert-success" role="alert">
+    <p><%=flash[:notice]%></p>
+  </div> 
+<%end%>
+<%if flash[:danger]%>
+  <div class="alert alert-danger" role="alert">
+    <p><%=flash[:danger]%></p>
+  </div> 
+<%end%>
+
+<div class="container mt-5 mb-5" style="width: 30rem;">
+
+    <div class="mt-4">
+      <h5>Description</h5>
+      <%=@event.description%> par <strong><%=@event.organiser.last_name%></strong> 
     </div>
-    <div class="col text-end">
-      <h3>Organisé par </h3>
-      <p><%=@event.organiser.email%></p>
+
+    <div class="row mt-4">
+      <div class="col-md-7">
+          <h5>Date de début</h5>
+          <%=@start_date%>
+      </div>
+      <div class="col-md-5">
+          <h5>Durée</h5>
+          <%=@event.duration%> minutes
+      </div>
     </div>
-  </div>
+
+    <div class="row mt-4">
+      <div class="col-md-7">
+          <h5>Lieu</h5>
+          <%=@event.location%>
+      </div>
+      <div class="col-md-5">
+            <h5>Tarif</h5>
+            <%=@event.price%> euros
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-12">
+          <h5>Les inscrits</h5>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Mail</th>
+              </tr>
+            </thead>
+            <% @event.attendances.each do |e| %>
+              <tbody>
+                <th scope="row">#</th>
+                <td><%= e.user.first_name %></td>
+                <td><%= e.user.last_name %></td>
+                <td><%= e.user.email %></td>
+              </tbody>
+            <% end %>
+          </table>       
+      </div>
+    </div>
+
+    <div class="row mt-4">
+        <%if @event.img_event.attached?%>
+          <%= image_tag @event.img_event, alt: 'photo' %>
+        <% else %>
+          <img src="https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?cs=srgb&dl=pexels-matheus-bertelli-2608517.jpg&fm=jpg", alt: 'photo' class="img">
+        <%end%>
+    </div>
+
+    <div class="mt-4">
+      <a href="<%= events_path %>" class="btn btn-primary">Retour</a>
+      <% if (current_user == @event.organiser) %>
+        <a href="<%= edit_event_path(@event.id) %>" class="btn btn-warning">Editer</a>
+        <a href="<%= event_path(@event.id) %>" class="btn btn-danger" data-confirm="êtes-vous sur?" data-method="DELETE">Supprimer</a>
+      <% end %>
+    </div>
+
+
 </div>
 
-<div class="container mt-5">
-  <div class="row cols-2">
-    <div class="col">
-      <h3>Date de début</h3>
-      <p><%=@start_date%></p>
-    </div>
-    <div class="col text-end">
-      <h3>Date de fin</h3>
-      <p><%=@end_date%></p>
-    </div>
-  </div>
-</div>
+

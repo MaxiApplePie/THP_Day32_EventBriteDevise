@@ -40,7 +40,7 @@
         </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <li><a class="dropdown-item" href="<%=user_path(current_user.id)%>">Mon Profil</a></li>
-            <li><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+              <li><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
           </ul>
         </li>
 
@@ -58,7 +58,12 @@
 
         <% end %>
 
-        </ul>
+      </ul>
+      <span class="nav-link disabled">
+        <% if user_signed_in? %>
+          <%= current_user.first_name %> // <%= current_user.email %>
+        <% end %>
+      </span>
     </div>
   </div>
 </nav>
@@ -66,11 +71,12 @@
     <%= yield %>
 
     <!-- Footer -->
+<br /><br />
 <footer class="bg-dark fixed-bottom text-center text-lg-start text-muted">
   <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2021 Copyright:
-    <a class="text-light text-muted" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    <a class="text-light text-muted" href="https://github.com/MaxiApplePie"> MaxiApplePie for THP</a>
   </div>
   <!-- Copyright -->
 </footer>
